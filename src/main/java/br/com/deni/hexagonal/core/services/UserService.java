@@ -5,6 +5,7 @@ import br.com.deni.hexagonal.core.domain.dto.UserDTO;
 import br.com.deni.hexagonal.core.services.exception.ObjectNotFoundException;
 import br.com.deni.hexagonal.adapters.SenderAdapter;
 import br.com.deni.hexagonal.core.repositories.UserRepository;
+import br.com.deni.hexagonal.ports.ISenderPort;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,7 @@ public class UserService {
     private UserRepository repo;
 
     @Autowired
-    private SenderAdapter sender;
+    private ISenderPort senderPort;
 
     public User findById(Integer id) {
         Optional<User> obj = repo.findById(id);
@@ -35,7 +36,7 @@ public class UserService {
         repo.save(obj);
         Gson gson = new GsonBuilder().serializeSpecialFloatingPointValues().serializeNulls().create();
         System.out.println(gson.toJson(obj));
-        sender.send(gson.toJson(obj));
+        senderPort.send(gson.toJson(obj));
         return obj;
     }
 
