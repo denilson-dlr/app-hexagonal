@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class TestAdapterResource {
+public class AdapterResourceTest {
 
     private static final String DADOS_OBRIGATORIOS = "Obrigatório enviar os dados para cadastro conforme documentacão do Swagger";
     private static final String NOME_NULO = "Nome não pode ser nulo";
